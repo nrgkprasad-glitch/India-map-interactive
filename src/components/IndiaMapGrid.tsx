@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { StateData, statesData } from "../data/statesData";
 import { Badge } from "./ui/Badge";
 import IndiaMap from "react-svgmap-india";
-import { Map, Grid, Info, Compass, HelpCircle, RefreshCw } from "lucide-react";
+import { Map, Grid, Info, Compass, HelpCircle, RefreshCw, MapPin } from "lucide-react";
 
 interface IndiaMapGridProps {
   selectedState: StateData | null;
@@ -31,6 +31,7 @@ const tileStates: TileState[] = [
   { id: "IN-HP", name: "Himachal Pradesh", abbr: "HP", gridX: 4, gridY: 2, region: "North", color: "from-indigo-400 to-indigo-500" },
   { id: "IN-PB", name: "Punjab", abbr: "PB", gridX: 3, gridY: 2, region: "North", color: "from-indigo-400 to-indigo-500" },
   { id: "IN-UT", name: "Uttarakhand", abbr: "UT", gridX: 5, gridY: 2, region: "North", color: "from-indigo-400 to-indigo-500" },
+  { id: "IN-CH", name: "Chandigarh", abbr: "CH", gridX: 2, gridY: 2, region: "Union Territory", color: "from-sky-400 to-sky-500" },
   
   // Row 3
   { id: "IN-HR", name: "Haryana", abbr: "HR", gridX: 3, gridY: 3, region: "North", color: "from-indigo-400 to-indigo-500" },
@@ -60,6 +61,7 @@ const tileStates: TileState[] = [
   { id: "IN-TG", name: "Telangana", abbr: "TG", gridX: 5, gridY: 6, region: "South", color: "from-blue-500 to-blue-600" },
   { id: "IN-TR", name: "Tripura", abbr: "TR", gridX: 9, gridY: 6, region: "Northeast", color: "from-green-500 to-green-600" },
   { id: "IN-MZ", name: "Mizoram", abbr: "MZ", gridX: 11, gridY: 6, region: "Northeast", color: "from-green-500 to-green-600" },
+  { id: "IN-DN", name: "Dadra & Nagar Haveli and Daman & Diu", abbr: "DN", gridX: 2, gridY: 6, region: "Union Territory", color: "from-sky-400 to-sky-500" },
   
   // Row 7
   { id: "IN-GA", name: "Goa", abbr: "GA", gridX: 3, gridY: 7, region: "West", color: "from-amber-500 to-amber-600" },
@@ -70,7 +72,31 @@ const tileStates: TileState[] = [
   { id: "IN-KL", name: "Kerala", abbr: "KL", gridX: 3, gridY: 8, region: "South", color: "from-blue-500 to-blue-600" },
   { id: "IN-TN", name: "Tamil Nadu", abbr: "TN", gridX: 4, gridY: 8, region: "South", color: "from-blue-500 to-blue-600" },
   { id: "IN-AN", name: "Andaman & Nicobar Islands", abbr: "AN", gridX: 7, gridY: 8, region: "Union Territory", color: "from-sky-400 to-sky-500" },
+  { id: "IN-LD", name: "Lakshadweep", abbr: "LD", gridX: 1, gridY: 8, region: "Union Territory", color: "from-sky-400 to-sky-500" },
+  { id: "IN-PY", name: "Puducherry", abbr: "PY", gridX: 5, gridY: 8, region: "Union Territory", color: "from-sky-400 to-sky-500" },
 ];
+
+const unionTerritoriesList = [
+  { id: "IN-DL", name: "Delhi (NCT)", capital: "New Delhi" },
+  { id: "IN-JK", name: "Jammu & Kashmir", capital: "Srinagar (S) / Jammu (W)" },
+  { id: "IN-LA", name: "Ladakh", capital: "Leh" },
+  { id: "IN-CH", name: "Chandigarh", capital: "Chandigarh" },
+  { id: "IN-DN", name: "Dadra & Nagar Haveli and Daman & Diu", capital: "Daman" },
+  { id: "IN-PY", name: "Puducherry", capital: "Puducherry" },
+  { id: "IN-LD", name: "Lakshadweep", capital: "Kavaratti" },
+  { id: "IN-AN", name: "Andaman & Nicobar Islands", capital: "Sri Vijaya Puram (Port Blair)" },
+];
+
+const utCoordinates: Record<string, { top: string; left: string }> = {
+  "IN-DL": { top: "33%", left: "37%" },
+  "IN-JK": { top: "14%", left: "30%" },
+  "IN-LA": { top: "11%", left: "44%" },
+  "IN-CH": { top: "26%", left: "36%" },
+  "IN-DN": { top: "59%", left: "17%" },
+  "IN-PY": { top: "84%", left: "42%" },
+  "IN-LD": { top: "88%", left: "14%" },
+  "IN-AN": { top: "83%", left: "88%" },
+};
 
 const regions = ["All", "North", "South", "East", "West", "Central", "Northeast", "Union Territory"] as const;
 
@@ -190,7 +216,8 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
           (selectedState.id === `IN-${id}` ||
             selectedState.id.endsWith(id) ||
             (id === "OR" && selectedState.id === "IN-OR") ||
-            (id === "CG" && selectedState.id === "IN-CT"));
+            (id === "CG" && selectedState.id === "IN-CT") ||
+            ((id === "DD" || id === "DN") && selectedState.id === "IN-DN"));
 
         // Match region highlighting
         let isRegionHighlighted = true;
@@ -200,7 +227,8 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
               s.id === `IN-${id}` ||
               s.id.endsWith(id) ||
               (id === "OR" && s.id === "IN-OR") ||
-              (id === "CG" && s.id === "IN-CT")
+              (id === "CG" && s.id === "IN-CT") ||
+              ((id === "DD" || id === "DN") && s.id === "IN-DN")
           );
           const tileObj = tileStates.find(
             (t) =>
@@ -208,6 +236,7 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
               t.id.endsWith(id) ||
               (id === "OR" && t.id === "IN-OR") ||
               (id === "CG" && t.id === "IN-CT") ||
+              ((id === "DD" || id === "DN") && t.id === "IN-DN") ||
               t.abbr === id
           );
           const stateRegion = stateObj?.region || tileObj?.region;
@@ -220,7 +249,8 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
             s.id === `IN-${id}` ||
             s.id.endsWith(id) ||
             (id === "OR" && s.id === "IN-OR") ||
-            (id === "CG" && s.id === "IN-CT")
+            (id === "CG" && s.id === "IN-CT") ||
+            ((id === "DD" || id === "DN") && s.id === "IN-DN")
         );
         const hasBadge = stateObjForBadge && unlockedBadges.includes(`${stateObjForBadge.name} Explorer`);
 
@@ -235,10 +265,41 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
         if (hasBadge) {
           path.classList.add("badge-earned");
         }
+
+        // Dynamically wire mouse listeners for SVG map hovering
+        const onMouseEnter = () => handleMouseOverState(id);
+        const onMouseLeave = () => setHoveredTile(null);
+
+        // Remove old events to avoid leaks
+        if ((path as any)._onMouseEnter) {
+          path.removeEventListener("mouseenter", (path as any)._onMouseEnter);
+        }
+        if ((path as any)._onMouseLeave) {
+          path.removeEventListener("mouseleave", (path as any)._onMouseLeave);
+        }
+
+        path.addEventListener("mouseenter", onMouseEnter);
+        path.addEventListener("mouseleave", onMouseLeave);
+
+        (path as any)._onMouseEnter = onMouseEnter;
+        (path as any)._onMouseLeave = onMouseLeave;
       });
     }, 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      const paths = document.querySelectorAll(".svgmap svg path");
+      paths.forEach((path) => {
+        if ((path as any)._onMouseEnter) {
+          path.removeEventListener("mouseenter", (path as any)._onMouseEnter);
+          delete (path as any)._onMouseEnter;
+        }
+        if ((path as any)._onMouseLeave) {
+          path.removeEventListener("mouseleave", (path as any)._onMouseLeave);
+          delete (path as any)._onMouseLeave;
+        }
+      });
+    };
   }, [selectedState, activeRegion, unlockedBadges, viewMode]);
 
   // Handle click on SVG map state
@@ -247,9 +308,14 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
     let matchedId = stateId;
     if (value === "OR") matchedId = "IN-OR";
     if (value === "CG") matchedId = "IN-CT";
+    if (value === "DD" || value === "DN") matchedId = "IN-DN";
 
     const stateObj = statesData.find(
-      (s) => s.id === matchedId || s.id.endsWith(value) || (value === "OR" && s.id === "IN-OR")
+      (s) =>
+        s.id === matchedId ||
+        s.id.endsWith(value) ||
+        (value === "OR" && s.id === "IN-OR") ||
+        ((value === "DD" || value === "DN") && s.id === "IN-DN")
     );
 
     if (stateObj) {
@@ -301,10 +367,24 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
 
   // Get current hover name on mouseover
   const handleMouseOverState = (id: string) => {
+    let matchedId = `IN-${id}`;
+    if (id === "OR") matchedId = "IN-OR";
+    if (id === "CG") matchedId = "IN-CT";
+    if (id === "DD" || id === "DN") matchedId = "IN-DN";
+
     const stateObj = statesData.find(
-      (s) => s.id === `IN-${id}` || s.id.endsWith(id) || (id === "OR" && s.id === "IN-OR")
+      (s) =>
+        s.id === matchedId ||
+        s.id.endsWith(id) ||
+        (id === "OR" && s.id === "IN-OR") ||
+        ((id === "DD" || id === "DN") && s.id === "IN-DN")
     );
-    const tileObj = tileStates.find((t) => t.abbr === id || t.id.endsWith(id));
+    const tileObj = tileStates.find(
+      (t) =>
+        t.abbr === id ||
+        t.id.endsWith(id) ||
+        ((id === "DD" || id === "DN") && t.id === "IN-DN")
+    );
     setHoveredTile(stateObj?.name || tileObj?.name || id);
   };
 
@@ -396,6 +476,36 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
                   hoverColor="rgba(245, 158, 11, 0.5)"
                   className="interactive-india-svg"
                 />
+
+                {/* Highly-visible, gorgeous pinpoint marker for selected Union Territory */}
+                {selectedState && utCoordinates[selectedState.id] && (
+                  <motion.div
+                    key={`pin-${selectedState.id}`}
+                    initial={{ scale: 0, opacity: 0, y: -20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0, opacity: 0, y: -20 }}
+                    transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                    style={{
+                      position: "absolute",
+                      top: utCoordinates[selectedState.id].top,
+                      left: utCoordinates[selectedState.id].left,
+                    }}
+                    className="z-30 pointer-events-none flex flex-col items-center -translate-x-1/2 -translate-y-[85%]"
+                  >
+                    {/* Floating Label */}
+                    <div className="bg-slate-950/95 border-2 border-sky-400 text-white text-[11px] font-black px-2.5 py-1.5 rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.4)] flex items-center gap-1.5 whitespace-nowrap mb-1">
+                      <MapPin className="h-3.5 w-3.5 text-sky-400 fill-sky-400/20" />
+                      <span>{selectedState.name}</span>
+                    </div>
+
+                    {/* Arrow/Stem of the Pin */}
+                    <div className="w-2 h-2 bg-sky-400 rotate-45 -mt-2 mb-1 shadow-md" />
+
+                    {/* Ring Pulse effect at the base */}
+                    <div className="absolute w-10 h-10 rounded-full bg-sky-500/40 animate-ping top-[100%] mt-1 -translate-y-1/2" />
+                    <div className="absolute w-3.5 h-3.5 rounded-full bg-sky-400 border-2 border-white top-[100%] mt-1 -translate-y-1/2 shadow-[0_0_10px_rgba(56,189,248,1)]" />
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           ) : (
@@ -480,6 +590,54 @@ export function IndiaMapGrid({ selectedState, onSelectState, unlockedBadges }: I
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* Union Territories Quick Access */}
+      <div className="flex flex-col space-y-3 bg-slate-900/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Compass className="h-4 w-4 text-sky-400 animate-pulse" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-200">
+              Union Territories Quick Access
+            </h4>
+          </div>
+          <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest bg-slate-950/80 px-2.5 py-1 rounded-md border border-white/5 self-start sm:self-auto">
+            Click to Explore UTs Separately
+          </span>
+        </div>
+        <p className="text-xs text-slate-400">
+          Since small island groups and specific non-contiguous federal territories can be hard to target on a standard map view, you can select and explore each Union Territory instantly below:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+          {unionTerritoriesList.map((ut) => {
+            const isSelected = selectedState?.id === ut.id;
+            return (
+              <button
+                key={ut.id}
+                onClick={() => {
+                  const found = statesData.find((s) => s.id === ut.id);
+                  if (found) {
+                    onSelectState(found);
+                  } else {
+                    handleMapClick(ut.id.replace("IN-", ""));
+                  }
+                }}
+                className={`flex flex-col items-start p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
+                  isSelected
+                    ? "bg-sky-500/10 border-sky-400/80 shadow-[0_0_12px_rgba(56,189,248,0.25)] scale-[1.02] z-10"
+                    : "bg-slate-950/40 hover:bg-slate-900/60 border-white/5 hover:border-white/10 hover:scale-[1.01]"
+                }`}
+              >
+                <span className={`text-xs font-bold ${isSelected ? "text-sky-400" : "text-slate-200"}`}>
+                  {ut.name}
+                </span>
+                <span className="text-[10px] text-slate-400 mt-1 font-medium truncate max-w-full">
+                  Capital: <strong className="text-slate-300 font-semibold">{ut.capital}</strong>
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Region Legend */}

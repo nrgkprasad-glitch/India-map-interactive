@@ -511,7 +511,7 @@ export const statesData: StateData[] = [
   {
     id: "IN-JK",
     name: "Jammu & Kashmir",
-    capital: "Srinagar & Jammu",
+    capital: "Srinagar (Summer) & Jammu (Winter)",
     region: "Union Territory",
     language: "Kashmiri, Dogri, Urdu",
     food: "Rogan Josh, Gustaba, Kahwa (Saffron Tea)",
@@ -585,7 +585,7 @@ export const statesData: StateData[] = [
   {
     id: "IN-UT",
     name: "Uttarakhand",
-    capital: "Dehradun",
+    capital: "Dehradun (Winter) & Gairsain (Summer)",
     region: "North",
     language: "Hindi, Garhwali, Kumaoni",
     food: "Kafuli, Aloo ke Gutke, Singori",
@@ -733,7 +733,7 @@ export const statesData: StateData[] = [
   {
     id: "IN-AN",
     name: "Andaman & Nicobar Islands",
-    capital: "Port Blair",
+    capital: "Sri Vijaya Puram (Port Blair)",
     region: "Union Territory",
     language: "Hindi, English, Bengali, Tamil, Telugu",
     food: "Seafood Platter, Fish Curry, Coconut Prawn Curry",
@@ -766,5 +766,228 @@ export const statesData: StateData[] = [
         explanation: "Barren Island houses the only active volcano in South Asia and the Indian subcontinent."
       }
     ]
+  },
+  {
+    id: "IN-LA",
+    name: "Ladakh",
+    capital: "Leh",
+    region: "Union Territory",
+    language: "Ladakhi, Tibetan, Balti, Urdu",
+    food: "Thukpa, Skyu, Chhurpi (Yak Cheese)",
+    bestTime: "April to July (Summer)",
+    animal: "Snow Leopard",
+    color: "bg-amber-600",
+    about: "Ladakh, the 'Land of High Passes', is a high-altitude cold desert in the Himalayas, famous for its dramatic barren landscapes, turquoise glacial lakes, and ancient Tibetan Buddhist monasteries.",
+    attractions: [
+      { name: "Pangong Tso Lake", desc: "A magnificent endorheic lake stretching from India to China that changes color through shades of blue and green.", category: "Nature" },
+      { name: "Nubra Valley", desc: "A dramatic deep-cut valley known for sand dunes, double-humped Bactrian camels, and high passes.", category: "Adventure" },
+      { name: "Hemis Monastery", desc: "A legendary 17th-century Tibetan Buddhist monastery hosting the colorful annual Hemis festival.", category: "Spiritual" }
+    ],
+    quiz: [
+      {
+        question: "Which spectacular brackish lake in Ladakh is famous for changing colors from turquoise to deep blue, and is shared with Tibet?",
+        options: ["Dal Lake", "Tso Moriri", "Pangong Tso", "Chilika Lake"],
+        answerIndex: 2,
+        explanation: "Pangong Tso is a legendary salt-water lake situated at almost 4,350 meters altitude, spanning India and China."
+      },
+      {
+        question: "Which unique animal, famous for carrying passengers on the sand dunes of Nubra Valley, is native to Ladakh?",
+        options: ["One-humped Camel", "Bactrian Camel (Two-humped)", "Yak", "Tibetan Wild Ass"],
+        answerIndex: 1,
+        explanation: "Bactrian camels are double-humped camels native to the steppes of Central Asia, famously ridden in Ladakh's high altitudes."
+      },
+      {
+        question: "Which of the following is Ladakh's state animal, symbolizing the high-altitude cold desert wildlife?",
+        options: ["Red Panda", "Snow Leopard", "Himalayan Ibex", "Musk Deer"],
+        answerIndex: 1,
+        explanation: "The elusive and majestic Snow Leopard is the state animal of Ladakh, thriving in the Hemis National Park region."
+      }
+    ]
+  },
+  {
+    id: "IN-DL",
+    name: "Delhi",
+    capital: "New Delhi",
+    region: "Union Territory",
+    language: "Hindi, Punjabi, Urdu, English",
+    food: "Chole Bhature, Butter Chicken, Paranthas",
+    bestTime: "October to March",
+    animal: "Nilgai (Blue Bull)",
+    color: "bg-red-700",
+    about: "Delhi, the historic capital of India, seamlessly bridges ancient empires and modern metropolis. It houses magnificent Mughal fortresses, vibrant bazaars, and grand colonial architecture.",
+    attractions: [
+      { name: "Red Fort", desc: "The iconic red sandstone palace fort built by Mughal Emperor Shah Jahan in the 17th century.", category: "Heritage" },
+      { name: "Qutub Minar", desc: "The world's tallest brick minaret, built in 1192 by Qutb-ud-din Aibak.", category: "Heritage" },
+      { name: "Lotus Temple", desc: "A stunning lotus-shaped Bahai House of Worship celebrated for its peaceful silence and modern design.", category: "Spiritual" }
+    ],
+    quiz: [
+      {
+        question: "Which iconic red sandstone fortress in Delhi is the site of the Prime Minister's national address every Independence Day?",
+        options: ["Humayun's Tomb", "Purana Qila", "Red Fort", "Tughlaqabad Fort"],
+        answerIndex: 2,
+        explanation: "The Red Fort (Lal Qila) was constructed in 1638 and serves as a powerful symbol of Indian national sovereignty."
+      },
+      {
+        question: "Which 73-meter brick minaret in Delhi was built in the late 12th century as a victory tower?",
+        options: ["Charminar", "Qutub Minar", "Gol Gumbaz", "Chand Minar"],
+        answerIndex: 1,
+        explanation: "Qutub Minar is a magnificent 5-storey victory tower and UNESCO World Heritage site situated in Mehrauli."
+      },
+      {
+        question: "What is the official state animal of the National Capital Territory of Delhi?",
+        options: ["Nilgai", "Chinkara", "Leopard", "Indian Hare"],
+        answerIndex: 0,
+        explanation: "The Nilgai or Blue Bull is the largest Asian antelope and is the state animal of Delhi, commonly seen in its forested ridges."
+      }
+    ]
+  },
+  {
+    id: "IN-PY",
+    name: "Puducherry",
+    capital: "Puducherry",
+    region: "Union Territory",
+    language: "Tamil, French, English, Telugu, Malayalam",
+    food: "French Baguettes, Crepes, Kadugu Yera (Mustard Prawns)",
+    bestTime: "October to March",
+    animal: "Squirrel (Indian Palm Squirrel)",
+    color: "bg-yellow-600",
+    about: "Puducherry, affectionately known as 'Pondy' or 'The French Riviera of the East', is a beautiful coastal Union Territory featuring mustard-colored colonial villas, leafy avenues, pristine beaches, and spiritual sanctuaries.",
+    attractions: [
+      { name: "White Town", desc: "A preserved French Quarter filled with mustard colonial houses, boutique cafes, and chic shops.", category: "Heritage" },
+      { name: "Auroville", desc: "An experimental township founded by Mirra Alfassa (The Mother) aimed at human unity, centered around the golden Matrimandir.", category: "Spiritual" },
+      { name: "Promenade Beach", desc: "A beautiful rocky beach boulevard popular for evening strolls and ocean views.", category: "Nature" }
+    ],
+    quiz: [
+      {
+        question: "Which experimental international township near Puducherry features the magnificent golden-domed Matrimandir?",
+        options: ["Auroville", "Sri Aurobindo Ashram", "White Town", "Shantiniketan"],
+        answerIndex: 0,
+        explanation: "Auroville was founded in 1968 to realize human unity, housing a spectacular sphere paneled in gold."
+      },
+      {
+        question: "Puducherry preserves a rich colonial legacy from which European country?",
+        options: ["Portugal", "Great Britain", "France", "Netherlands"],
+        answerIndex: 2,
+        explanation: "The French East India Company established its headquarters in Puducherry in 1674, deeply influencing its urban layout and cuisine."
+      },
+      {
+        question: "What is the famous beachfront boulevard in Puducherry that is lined with heritage buildings and a statue of Mahatma Gandhi?",
+        options: ["Marina Beach", "Gopalpur Beach", "Promenade Beach", "Varkala Beach"],
+        answerIndex: 2,
+        explanation: "Promenade Beach is a beautiful 1.5-km oceanfront avenue that becomes a traffic-free pedestrian zone after sunset."
+      }
+    ]
+  },
+  {
+    id: "IN-LD",
+    name: "Lakshadweep",
+    capital: "Kavaratti",
+    region: "Union Territory",
+    language: "Jeseri, Malayalam, Dhivehi, English",
+    food: "Coconut Octopus Fry, Fish Curry, Mus Kavaab",
+    bestTime: "October to May",
+    animal: "Butterfly Fish",
+    color: "bg-teal-500",
+    about: "Lakshadweep, meaning 'a hundred thousand islands', is India's smallest Union Territory. It is a breathtaking group of 36 coral islands in the Laccadive Sea, famous for pristine white-sand shores, shallow turquoise lagoons, and rich marine life.",
+    attractions: [
+      { name: "Bangaram Atoll", desc: "An uninhabited tropical teardrop-shaped island with sparkling blue lagoons and superb diving sites.", category: "Nature" },
+      { name: "Agatti Island", desc: "A stunning gateway island featuring a narrow landing strip surrounded by endless turquoise sea on both sides.", category: "Adventure" },
+      { name: "Kadmat Island", desc: "An eco-haven known for cardamom plantations, coral reefs, and water sports.", category: "Adventure" }
+    ],
+    quiz: [
+      {
+        question: "What is the capital of India's tropical coral archipelago, Lakshadweep?",
+        options: ["Port Blair", "Kavaratti", "Agatti", "Minicoy"],
+        answerIndex: 1,
+        explanation: "Kavaratti is the administrative capital of Lakshadweep, known for its pristine sandy beaches and beautiful white mosques."
+      },
+      {
+        question: "Which type of geological formations primarily make up the beautiful islands of Lakshadweep?",
+        options: ["Volcanic Rocks", "Sedimentary Basins", "Coral Reefs (Atolls)", "Granite Massifs"],
+        answerIndex: 2,
+        explanation: "Lakshadweep is entirely made up of coral atolls, barrier reefs, and sand banks, hosting rich marine ecosystems."
+      },
+      {
+        question: "What is the official state animal of Lakshadweep, representing its vibrant marine ecosystem?",
+        options: ["Dugong", "Butterfly Fish", "Green Sea Turtle", "Dolphin"],
+        answerIndex: 1,
+        explanation: "The ornate, bright yellow and black Butterfly Fish is the state animal, swimming across the coral reef shallow waters."
+      }
+    ]
+  },
+  {
+    id: "IN-CH",
+    name: "Chandigarh",
+    capital: "Chandigarh",
+    region: "Union Territory",
+    language: "Punjabi, Hindi, English",
+    food: "Chole Bhature, Butter Chicken, Paneer Tikka",
+    bestTime: "October to March",
+    animal: "Indian Gray Mongoose",
+    color: "bg-gray-600",
+    about: "Chandigarh is a prestigious, beautifully planned city designed by legendary Swiss-French architect Le Corbusier. Serving as the joint capital of both Punjab and Haryana, it is renowned for its grid-planned sectors, clean green gardens, and modernist buildings.",
+    attractions: [
+      { name: "The Rock Garden", desc: "An extraordinary 40-acre park sculpted entirely from industrial and recycled domestic waste by Nek Chand.", category: "Modern" },
+      { name: "Sukhna Lake", desc: "A scenic rain-fed artificial lake at the foothills of the Shivalik range, perfect for boating and sunsets.", category: "Nature" },
+      { name: "Le Corbusier Centre", desc: "A fascinating museum dedicated to the architectural heritage and planning of the modern city.", category: "Heritage" }
+    ],
+    quiz: [
+      {
+        question: "Which world-famous Swiss-French master architect laid out the modernist urban plan of Chandigarh?",
+        options: ["Le Corbusier", "Frank Lloyd Wright", "Edwin Lutyens", "Laurie Baker"],
+        answerIndex: 0,
+        explanation: "Le Corbusier planned the city in the 1950s using a grid system, sector-wise self-sufficiency, and raw concrete monuments."
+      },
+      {
+        question: "What extraordinary sculpture park in Chandigarh was created secretly by Nek Chand out of waste materials?",
+        options: ["Garden of Silence", "Pinjore Gardens", "The Rock Garden", "Rose Garden"],
+        answerIndex: 2,
+        explanation: "The Rock Garden is famous for thousands of figures made of glass bottles, tiles, broken crockery, and light fixtures."
+      },
+      {
+        question: "Which mountain range stands as a beautiful natural backdrop at Chandigarh's northern horizon?",
+        options: ["Western Ghats", "Shivalik Hills", "Aravalli Range", "Vindhya Range"],
+        answerIndex: 1,
+        explanation: "The Shivalik Hills, the outermost foothills of the Himalayas, flank the city to the north, offering wonderful views."
+      }
+    ]
+  },
+  {
+    id: "IN-DN",
+    name: "Dadra & Nagar Haveli and Daman & Diu",
+    capital: "Daman",
+    region: "Union Territory",
+    language: "Gujarati, Hindi, Konkani, Portuguese",
+    food: "Dobra (Fish Curry), Ubadiyu, Seafood Biryani",
+    bestTime: "October to March",
+    animal: "Rust-Spotted Cat",
+    color: "bg-emerald-700",
+    about: "This united coastal Union Territory on India's western shores merges historic Portuguese fortresses, tranquil beaches, and lush inland forests, celebrating an exotic blend of tribal traditions and European influences.",
+    attractions: [
+      { name: "Moti Daman Fort", desc: "A monumental 16th-century Portuguese fortress housing grand cathedrals and administrative monuments.", category: "Heritage" },
+      { name: "Jallandhar Beach", desc: "A pristine, serene beach in Diu shaded by casuarina trees, perfect for relaxing.", category: "Nature" },
+      { name: "Vanganga Lake Garden", desc: "A beautiful Japanese-style landscaped lake garden located in Silvassa.", category: "Nature" }
+    ],
+    quiz: [
+      {
+        question: "Which European country ruled Daman and Diu for over 450 years before they were incorporated into India in 1961?",
+        options: ["Great Britain", "France", "Portugal", "Netherlands"],
+        answerIndex: 2,
+        explanation: "Like Goa, Daman and Diu were Portuguese enclaves and colonies on the west coast of India until liberation in 1961."
+      },
+      {
+        question: "What is the capital city of the merged Union Territory of Dadra & Nagar Haveli and Daman & Diu?",
+        options: ["Silvassa", "Daman", "Diu", "Panaji"],
+        answerIndex: 1,
+        explanation: "Daman, located on the Gulf of Khambhat, is the administrative headquarters and capital of the merged territory."
+      },
+      {
+        question: "Silvassa, a picturesque town famous for wildlife sanctuaries and tribal heritage, serves as the headquarters of which region?",
+        options: ["Daman", "Diu", "Dadra & Nagar Haveli", "Goa"],
+        answerIndex: 2,
+        explanation: "Silvassa was historically the capital of Dadra and Nagar Haveli and remains its regional headquarters."
+      }
+    ]
   }
 ];
+
