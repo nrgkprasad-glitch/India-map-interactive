@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+}
+
+/* Interactive SVG India Map styles */
+.svgmap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.svgmap svg {
+  width: 100% !important;
+  height: auto !important;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+}
+
+.svgmap svg path {
+  fill: #1e293b !important; /* Slate 800 default fill */
+  stroke: rgba(255, 255, 255, 0.15) !important;
+  stroke-width: 1px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* Hover over paths */
+.svgmap svg path:hover {
+  fill: rgba(245, 158, 11, 0.5) !important; /* Amber hover */
+  stroke: #f59e0b !important;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+/* Highlighted state when active in selected region */
+.svgmap svg path.region-highlighted {
+  fill: #334155 !important; /* Slate 700 for highlighted region */
+  stroke: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Unselected/Dimmed states in filters */
+.svgmap svg path.region-dimmed {
+  fill: #0f172a !important; /* Slate 900 for inactive */
+  opacity: 0.25 !important;
+  stroke: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Selected state styling */
+.svgmap svg path.selected-state {
+  fill: #f59e0b !important; /* Pure Amber 500 */
+  stroke: #ffffff !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.7));
+}
+
+/* States with earned explorer badge */
+.svgmap svg path.badge-earned {
+  stroke: #fbbf24 !important; /* Amber 400 stroke */
+  stroke-width: 1.2px !important;
+}
+
+/* Custom scrollbars for dark theme aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.3);
+}
+

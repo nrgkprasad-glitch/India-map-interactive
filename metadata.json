@@ -1,0 +1,6 @@
+{
+  "name": "Interactive Map of India",
+  "description": "An interactive map of Indian states and Union Territories featuring regional breakdowns, traditional cuisines, tourist landmarks, gamified trivia quizzes, and server-side Gemini AI-guided travel itineraries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
